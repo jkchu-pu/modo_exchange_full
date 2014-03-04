@@ -9,7 +9,7 @@
  *
  */
 
-class StackExchangeDataRetriever extends KGOURLDataRetriever
+class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearchDataRetriever
 {
 
     protected $site = 'stackoverflow';
@@ -56,9 +56,22 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever
         $this->setOption('action', 'getFeaturedQuestions');
         $this->setBaseURL($this->getEndpoint() . 'questions/featured');
         $this->addParameter('sort', 'votes');
-        $this->setParseMap($this->featuredQuestionParseMap);
+        $this->setParseMap($this->questionParseMap);
         return $this->getData();
     }
+
+    public function search($searchTerms, &$response=null){
+        $this->setOption('action', 'search');
+        $this->setBaseURL($this->getEndpoint() . 'search');
+        $this->addParameter('intitle', $searchTerms);
+        $this->addParameter('sort', 'votes');
+        $this->setParseMap($this->questionParseMap);
+        // kgo_debug($this->getData(), true, true);
+        return $this->getData($response);
+    }
+
+
+
 
     public function getQuestions(){
         $this->setOption('action', 'getQuestions');
@@ -73,14 +86,6 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever
         # This adds the question.body filter
         $this->addParameter('filter', '!9hnGss2Cz');
         return $this->getData();
-    }
-
-    public function search($searchTerms, &$response=null){
-        $this->setOption('action', 'search');
-        $this->setBaseURL($this->getEndpoint() . 'search');
-        $this->addParameter('intitle', $searchTerms);
-        $this->addParameter('sort', 'votes');
-        return $this->getData($response);
     }
 
     public function getAnswersForQuestion($questionID){
@@ -104,9 +109,8 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever
     }
 
 
-    public $featuredQuestionParseMap = array (
+    public $questionParseMap = array (
             'key' => 'items',
-            // 'array' => true,
             'class' => 'KGODataObject',
             'includeUnmappedAttributes' => true,
             'attributes' => array (

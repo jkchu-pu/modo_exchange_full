@@ -2,14 +2,13 @@
 common:
     pages:
         index:
-            pageTitle: Stack Overflow
             objdefs:
                 content: page-index.objdefs.content.default
         search:
             pageTitle: Search Results
             objdefs:
                 content: page-search.objdefs.content.default
-        question:
+        detail:
             objdefs:
-                content: page-question.objdefs.content.default
+                content: page-detail.objdefs.content.default
 ...
