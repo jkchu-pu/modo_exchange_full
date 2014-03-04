@@ -37,8 +37,8 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
         }
     }
 
-    protected function initRequest(){
-        parent::initRequest();
+    protected function initRequestIfNeeded(){
+        parent::initRequestIfNeeded();
 
         $this->addHeader('Accept-Encoding', 'deflate');
         $this->addParameter('site', $this->site);
@@ -61,27 +61,21 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
     }
 
     public function search($searchTerms, &$response=null){
-        $this->setOption('action', 'search');
         $this->setBaseURL($this->getEndpoint() . 'search');
         $this->addParameter('intitle', $searchTerms);
         $this->addParameter('sort', 'votes');
         $this->setParseMap($this->questionParseMap);
-        // kgo_debug($this->getData(), true, true);
         return $this->getData($response);
     }
 
 
-
-
     public function getQuestions(){
-        $this->setOption('action', 'getQuestions');
         $this->setBaseURL($this->getEndpoint() . 'questions');
         $this->addParameter('sort', 'votes');
         return $this->getData();
     }
 
     public function getQuestion($id){
-        $this->setOption('action', 'getQuestion');
         $this->setBaseURL(sprintf("%s%s/%s", $this->getEndpoint(), 'questions', $id));
         # This adds the question.body filter
         $this->addParameter('filter', '!9hnGss2Cz');
@@ -89,7 +83,6 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
     }
 
     public function getAnswersForQuestion($questionID){
-        $this->setOption('action', 'getAnswersForQuestion');
         $this->setBaseURL(sprintf("%s%s/%s/%s", $this->getEndpoint(), 'questions', $questionID, 'answers'));
         $this->addParameter('sort', 'votes');
         # Filter to add total and answer.body
@@ -101,7 +94,6 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
         # Clear cache because this is potentially the second
         # data request during the current request.
         $this->clearInternalCache();
-        $this->setOption('action', 'getAnswer');
         $this->setBaseURL(sprintf("%s%s/%s", $this->getEndpoint(), 'answers', $id));
         # This adds the answer.body filter
         $this->addParameter('filter', '!9hnGsyXaB');
