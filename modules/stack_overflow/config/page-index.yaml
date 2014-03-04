@@ -1,0 +1,35 @@
+---
+common:
+    objdefs:
+        content:
+            default:
+            -   class: KGODataController
+                uiClass: KGOUISearchStackOverflow
+            -   class: KGOListController
+                requiresData: false
+                options:
+                    grouped: true
+                fields:
+                    heading: Featured Questions
+                    noItemsMessage: Unable to retrieve featured questions
+                regions:
+                -   name: items
+                    contents:
+                    -   class: KGOListItemController
+                        source:
+                        -   kgoResolveType: method
+                            kgoResolveValue: getFeaturedQuestions
+                        fields:
+                            thumbnail:
+                                kgoResolveType: value
+                                kgoResolveValue: profile_image
+                                kgoResolveProcessors:
+                                -   class: KGOImageDataProcessor
+                                    options:
+                                        maxHeight: 60
+                            subtitle:
+                                kgoResolveType: value
+                                kgoResolveValue: author
+
+
+...

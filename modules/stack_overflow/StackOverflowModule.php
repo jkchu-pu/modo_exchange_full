@@ -11,5 +11,22 @@
 
 class StackOverflowModule extends KGOModule {
 
+    protected function initializeForPageConfigObjects_index(KGOUIPage $page, $objects) {
+        if (!($feed = $this->getFeed())) {
+            return;
+        }
+    }
 
+    protected function initializeForPageConfigObjects_search(KGOUIPage $page, $objects) {
+        if (!($feed = $this->getFeed())) {
+            return;
+        }
+    }
+
+    public function getFeaturedQuestions() {
+        if ($feed = $this->getFeed()) {
+            $questions = $feed->getFeaturedQuestions();
+            return $questions;
+        }
+    }
 }

@@ -1,0 +1,15 @@
+---
+common:
+    pages:
+        index:
+            pageTitle: Stack Overflow
+            objdefs:
+                content: page-index.objdefs.content.default
+        search:
+            pageTitle: Search Results
+            objdefs:
+                content: page-search.objdefs.content.default
+        question:
+            objdefs:
+                content: page-question.objdefs.content.default
+...
