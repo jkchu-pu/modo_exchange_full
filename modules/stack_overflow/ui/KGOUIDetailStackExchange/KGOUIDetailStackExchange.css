@@ -5,6 +5,7 @@ $quote_bg_color = #dadada;
     blockquote {
         background-color: $quote_bg_color;
         padding: kgo_theme("standard_padding");
+        overflow-x: scroll;
     }
 
     code {
