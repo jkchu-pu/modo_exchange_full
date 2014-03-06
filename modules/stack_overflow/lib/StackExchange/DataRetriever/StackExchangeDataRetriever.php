@@ -9,7 +9,7 @@
  *
  */
 
-class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearchDataRetriever
+class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearchDataRetriever, KGOItemDataRetriever
 {
 
     protected $site = 'stackoverflow';
@@ -68,17 +68,33 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
         return $this->getData($response);
     }
 
+    public function getQuestion($id, &$response){
+        $this->setBaseURL(sprintf("%s%s/%s", $this->getEndpoint(), 'questions', $id));
+        # This adds the question.body filter
+        $this->addParameter('filter', '!9hnGss2Cz');
+
+        $this->setParseMap($this->questionParseMap);
+        // kgo_debug($this->getData($response), true);
+        return reset($this->getData($response));
+    }
+
+// KGOItemDataRetriever interface
+    public function getItems(&$response=null) {
+        // need to call getData here so $response is created
+        return $this->getData($response);
+    }
+
+    public function getItem($id, &$response=null) {
+        return $this->getQuestion($id, $response);
+    }
+
+
+
+
 
     public function getQuestions(){
         $this->setBaseURL($this->getEndpoint() . 'questions');
         $this->addParameter('sort', 'votes');
-        return $this->getData();
-    }
-
-    public function getQuestion($id){
-        $this->setBaseURL(sprintf("%s%s/%s", $this->getEndpoint(), 'questions', $id));
-        # This adds the question.body filter
-        $this->addParameter('filter', '!9hnGss2Cz');
         return $this->getData();
     }
 

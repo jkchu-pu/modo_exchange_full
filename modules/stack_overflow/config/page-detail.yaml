@@ -2,6 +2,54 @@
 common:
     objdefs:
         content:
-            default: []
+            default:
+            -   class: KGODetailController
+                uiClass: KGOUIDetailStackExchange
+                source:
+                -   kgoResolveType: method
+                    kgoResolveValue: getFeed
+                -   kgoResolveType: method
+                    kgoResolveValue: getItem
+                options:
+                        bookmarkable: false
+                fields:
+                    title:
+                        kgoResolveType: value
+                        kgoResolveValue: kgo:title
+                    thumbnail:
+                        kgoResolveType: value
+                        kgoResolveValue: profile_image
+                        kgoResolveProcessors:
+                        -   class: KGOImageDataProcessor
+                            options:
+                                maxHeight: 60
+                    author:
+                        kgoResolveType: value
+                        kgoResolveValue: author
+                regions:
+                -   name: content
+                    contents:
+                    -   class: KGODataController
+                        uiClass: KGOUIHTML
+                        fields:
+                            html:
+                                kgoResolveType: value
+                                kgoResolveValue: body
+                    # -   class: KGOListController
+                    #     requiresData: false
+                    #     options:
+                    #         grouped: true
+                    #         inset: true
+                    #     fields:
+                    #         heading: Test
+                    #         noItemsMessage: Unable to retrieve question
+                    #     regions:
+                    #     -   name: items
+                    #         contents:
+                    #         -   class: KGOListItemController
+                    #         fields:
+                    #             title:
+                    #                 kgoResolveType: value
+                    #                 kgoResolveValue: body
 
 ...

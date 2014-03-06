@@ -1,0 +1,18 @@
+$quote_bg_color = #dadada;
+
+.kgoui_detail_stack_exchange {
+    pre,
+    blockquote {
+        background-color: $quote_bg_color;
+        padding: kgo_theme("standard_padding");
+    }
+
+    code {
+        background-color: $quote_bg_color;
+        padding: kgo_theme("standard_padding") * 0.25;
+    }
+
+    .kgoui_detail_author {
+        text-align: right;
+    }
+}

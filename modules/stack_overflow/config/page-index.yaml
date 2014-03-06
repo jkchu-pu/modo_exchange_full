@@ -9,6 +9,7 @@ common:
                 requiresData: false
                 options:
                     grouped: true
+                    urlCommand: detail
                 fields:
                     heading: Featured Questions
                     noItemsMessage: Unable to retrieve featured questions
@@ -30,6 +31,4 @@ common:
                             subtitle:
                                 kgoResolveType: value
                                 kgoResolveValue: author
-
-
 ...
