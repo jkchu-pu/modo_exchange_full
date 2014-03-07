@@ -35,21 +35,30 @@ common:
                             html:
                                 kgoResolveType: value
                                 kgoResolveValue: body
-                    # -   class: KGOListController
-                    #     requiresData: false
-                    #     options:
-                    #         grouped: true
-                    #         inset: true
-                    #     fields:
-                    #         heading: Test
-                    #         noItemsMessage: Unable to retrieve question
-                    #     regions:
-                    #     -   name: items
-                    #         contents:
-                    #         -   class: KGOListItemController
-                    #         fields:
-                    #             title:
-                    #                 kgoResolveType: value
-                    #                 kgoResolveValue: body
-
+                    -   class: KGOListController
+                        requiresData: false
+                        options:
+                            grouped: false
+                            inset: true
+                        fields:
+                            heading: Answers
+                            noItemsMessage: No answers
+                        regions:
+                        -   name: items
+                            contents:
+                            -   class: KGOListItemController
+                                uiClass: KGOUIListItemSEAnswer
+                                source:
+                                -   kgoResolveType: method
+                                    kgoResolveValue: getAnswers
+                                fields:
+                                    title:
+                                        kgoResolveType: value
+                                        kgoResolveValue: body
+                                    label:
+                                        kgoResolveType: value
+                                        kgoResolveValue: score
+                                fieldFormatters:    
+                                    title:
+                                    -   class: KGOHTMLFormatter
 ...

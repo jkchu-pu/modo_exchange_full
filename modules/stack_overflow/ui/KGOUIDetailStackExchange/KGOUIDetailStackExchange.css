@@ -1,6 +1,7 @@
-$quote_bg_color = #dadada;
-
 .kgoui_detail_stack_exchange {
+
+    $quote_bg_color = #dadada;
+
     pre,
     blockquote {
         background-color: $quote_bg_color;

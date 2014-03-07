@@ -1,0 +1,11 @@
+.kgoui_list_item_se_answer {
+
+    .kgoui_list_item_label {
+        float: left;
+        height: 100%;
+        padding-right: kgo_theme("standard_padding");
+        font-size: 24px !important;
+        color: #555 !important;
+    }
+
+}

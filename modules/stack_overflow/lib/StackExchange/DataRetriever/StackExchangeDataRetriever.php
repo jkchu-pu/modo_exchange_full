@@ -53,9 +53,8 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
     }
 
     public function getFeaturedQuestions(){
-        $this->setOption('action', 'getFeaturedQuestions');
         $this->setBaseURL($this->getEndpoint() . 'questions/featured');
-        $this->addParameter('sort', 'votes');
+        // $this->addParameter('sort', 'votes');
         $this->setParseMap($this->questionParseMap);
         return $this->getData();
     }
@@ -103,27 +102,29 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
         $this->addParameter('sort', 'votes');
         # Filter to add total and answer.body
         $this->addParameter('filter', '!9hnGsyXaB');
+
+        $this->setParseMap($this->answerParseMap);
         return $this->getData();
     }
 
-    public function getAnswer($id){
-        # Clear cache because this is potentially the second
-        # data request during the current request.
-        $this->clearInternalCache();
-        $this->setBaseURL(sprintf("%s%s/%s", $this->getEndpoint(), 'answers', $id));
-        # This adds the answer.body filter
-        $this->addParameter('filter', '!9hnGsyXaB');
-        return $this->getData();
-    }
-
-
-    public $questionParseMap = array (
+    private $questionParseMap = array (
             'key' => 'items',
-            'class' => 'KGODataObject',
+            'class' => 'SEQuestionDataObject',
             'includeUnmappedAttributes' => true,
             'attributes' => array (
                                 KGODataObject::ID_ATTRIBUTE => 'question_id',
                                 KGODataObject::TITLE_ATTRIBUTE => 'title',
+                                'profile_image' => 'owner.profile_image',
+                                'author' => 'owner.display_name'
+                            ),
+        );
+
+    private $answerParseMap = array (
+            'key' => 'items',
+            'class' => 'KGODataObject',
+            'includeUnmappedAttributes' => true,
+            'attributes' => array (
+                                KGODataObject::ID_ATTRIBUTE => 'answer_id',
                                 'profile_image' => 'owner.profile_image',
                                 'author' => 'owner.display_name'
                             ),
