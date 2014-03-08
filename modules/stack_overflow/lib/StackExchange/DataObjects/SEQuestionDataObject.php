@@ -2,11 +2,12 @@
 
 class SEQuestionDataObject extends KGODataObject {
 
-    const AUTHOR_ATTRIBITE = 'se:author';
+    const AUTHOR_ATTRIBUTE = 'se:author';
     const ANSWERS_ATTRIBUTE = 'se:answers';
+    const AVATAR_ATTRIBUTE = 'se:avatar';
 
     public function getAuthor() {
-        return $this->getAttribute(self::AUTHOR_ATTRIBITE);
+        return $this->getAttribute(self::AUTHOR_ATTRIBUTE);
     }
 
     public function getAnswers() {
@@ -15,5 +16,16 @@ class SEQuestionDataObject extends KGODataObject {
             return $retriever->getAnswersForQuestion($this->getId());
         }
         return null;
+    }
+
+    public function getUIField(KGOUIObject $object, $field) {
+        switch ($field) {
+            case 'thumbnail':
+                return $this->getAttribute(self::AVATAR_ATTRIBUTE);
+            case 'subtitle':
+                return $this->getAuthor();
+            default:
+                return parent::getUIField($object, $field);
+        }
     }
 }

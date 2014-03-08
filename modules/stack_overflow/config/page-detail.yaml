@@ -18,7 +18,7 @@ common:
                         kgoResolveValue: kgo:title
                     thumbnail:
                         kgoResolveType: value
-                        kgoResolveValue: profile_image
+                        kgoResolveValue: se:avatar
                         kgoResolveProcessors:
                         -   class: KGOImageDataProcessor
                             options:
@@ -58,7 +58,7 @@ common:
                                     label:
                                         kgoResolveType: value
                                         kgoResolveValue: score
-                                fieldFormatters:    
+                                fieldFormatters:
                                     title:
                                     -   class: KGOHTMLFormatter
 ...

@@ -108,15 +108,25 @@ class StackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearc
     }
 
     private $questionParseMap = array (
-            'key' => 'items',
-            'class' => 'SEQuestionDataObject',
+            'key'                       => 'items',
+            'class'                     => 'SEQuestionDataObject',
             'includeUnmappedAttributes' => true,
-            'attributes' => array (
-                                KGODataObject::ID_ATTRIBUTE => 'question_id',
-                                KGODataObject::TITLE_ATTRIBUTE => 'title',
-                                'profile_image' => 'owner.profile_image',
-                                'author' => 'owner.display_name'
-                            ),
+            'attributes'                => array (
+                KGODataObject::ID_ATTRIBUTE            => 'question_id',
+                KGODataObject::TITLE_ATTRIBUTE         => 'title',
+                SEQuestionDataObject::AVATAR_ATTRIBUTE => 'owner.profile_image',
+                SEQuestionDataObject::AUTHOR_ATTRIBUTE => 'owner.display_name'
+            ),
+            'processors' => array (
+                SEQuestionDataObject::AVATAR_ATTRIBUTE => array(
+                    array(
+                        'class'   => 'KGOImageDataProcessor',
+                        'options' => array(
+                            'maxWidth' => 60
+                        )
+                    )
+                ),
+            )
         );
 
     private $answerParseMap = array (

@@ -1,11 +1,19 @@
 .kgoui_list_item_se_answer {
 
-    .kgoui_list_item_label {
-        float: left;
-        height: 100%;
-        padding-right: kgo_theme("standard_padding");
-        font-size: 24px !important;
-        color: #555 !important;
+    .kgoui_list_item_textblock {
+        padding-left: 3.5rem;
+        position: relative;
+
+        .kgoui_list_item_label {
+            position: absolute;
+            left: 0;
+            padding-right: kgo_theme("standard_padding");
+            font-family: kgo_theme("primary_heading_font_family");
+            font-size: kgo_theme("primary_heading_font_size");
+            font-weight: kgo_theme("primary_heading_font_weight");
+            font-style: kgo_theme("primary_heading_font_style");
+            color: kgo_theme("primary_heading_text_color");
+        }
     }
 
 }

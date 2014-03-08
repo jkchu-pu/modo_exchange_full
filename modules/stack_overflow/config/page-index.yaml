@@ -20,15 +20,4 @@ common:
                         source:
                         -   kgoResolveType: method
                             kgoResolveValue: getFeaturedQuestions
-                        fields:
-                            thumbnail:
-                                kgoResolveType: value
-                                kgoResolveValue: profile_image
-                                kgoResolveProcessors:
-                                -   class: KGOImageDataProcessor
-                                    options:
-                                        maxHeight: 60
-                            subtitle:
-                                kgoResolveType: value
-                                kgoResolveValue: author
 ...
