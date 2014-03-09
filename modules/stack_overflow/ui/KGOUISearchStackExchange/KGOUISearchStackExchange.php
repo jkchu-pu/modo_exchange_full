@@ -9,14 +9,7 @@
  *
  */
 
-class StackExchangeDataProcessor extends KGODataProcessor {
-
-    protected function processValue($value, $object = null) {
-        return gzinflate($value);
-    }
-
-    protected function canProcessValue($value, $object = null) {
-        return true;
-    }
+class KGOUISearchStackExchange extends KGOUISearch
+{
 
 }

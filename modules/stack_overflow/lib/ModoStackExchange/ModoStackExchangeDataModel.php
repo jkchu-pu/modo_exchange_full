@@ -9,9 +9,13 @@
  *
  */
 
-class StackExchangeDataModel extends KGOItemsDataModel
+class ModoStackExchangeDataModel extends KGOItemsDataModel
 {
-
+    /**
+     * Returns the featured questions
+     *
+     * @return array    Array of KGODataObjects
+     */
     public function getFeaturedQuestions() {
         return $this->retriever->getFeaturedQuestions();
     }
