@@ -9,7 +9,7 @@
  *
  */
 
-class StackOverflowModule extends KGOModule {
+class ModoStackExchangeModule extends KGOModule {
 
     protected function initializeForPageConfigObjects_index(KGOUIPage $page, $objects) {
         if (!($feed = $this->getFeed())) {
