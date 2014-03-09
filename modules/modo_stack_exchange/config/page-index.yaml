@@ -11,8 +11,12 @@ common:
                     grouped: true
                     urlCommand: detail
                 fields:
-                    heading: Featured Questions
-                    noItemsMessage: Unable to retrieve featured questions
+                    heading:
+                        kgoResolveType: localize
+                        kgoResolveValue: modo_stack_exchange.headings.featuredQuestions
+                    noItemsMessage:
+                        kgoResolveType: localize
+                        kgoResolveValue: modo_stack_exchange.error.noFeaturedQuestions
                 regions:
                 -   name: items
                     contents:

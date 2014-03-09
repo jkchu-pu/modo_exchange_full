@@ -41,8 +41,12 @@ common:
                             grouped: false
                             inset: true
                         fields:
-                            heading: Answers
-                            noItemsMessage: No answers
+                            heading:
+                                kgoResolveType: localize
+                                kgoResolveValue: modo_stack_exchange.headings.answers
+                            noItemsMessage:
+                                kgoResolveType: localize
+                                kgoResolveValue: modo_stack_exchange.titles.noAnswers
                         regions:
                         -   name: items
                             contents:

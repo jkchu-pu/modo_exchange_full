@@ -1,4 +1,12 @@
 ---
 common:
-    modo_stackexchange: []
+    modo_stack_exchange:
+        headings:
+            featuredQuestions: Featured Questions
+            answers: Answers
+        titles:
+            noAnswers: No Answers
+        error:
+            notConfigured: Unable to get feed. Please check your module configuration.
+            noFeaturedQuestions: Unable to retrieve featured questions
 ...

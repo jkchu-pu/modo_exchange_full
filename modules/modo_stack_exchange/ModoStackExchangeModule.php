@@ -13,18 +13,21 @@ class ModoStackExchangeModule extends KGOModule {
 
     protected function initializeForPageConfigObjects_index(KGOUIPage $page, $objects) {
         if (!($feed = $this->getFeed())) {
+            $this->setPageError($page, 'modo_stack_exchange.error.notConfigured');
             return;
         }
     }
 
     protected function initializeForPageConfigObjects_search(KGOUIPage $page, $objects) {
         if (!($feed = $this->getFeed())) {
+            $this->setPageError($page, 'modo_stack_exchange.error.notConfigured');
             return;
         }
     }
 
     protected function initializeForPageConfigObjects_detail(KGOUIPage $page, $objects) {
         if (!($feed = $this->getFeed())) {
+            $this->setPageError($page, 'modo_stack_exchange.error.notConfigured');
             return;
         }
     }
