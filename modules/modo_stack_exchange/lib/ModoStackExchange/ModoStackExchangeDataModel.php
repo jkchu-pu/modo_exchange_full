@@ -9,6 +9,13 @@
  *
  */
 
+/**
+ * @ingroup DataModel
+ *
+ * @brief Subclass of KGOItemsDataModel
+ *
+ */
+
 class ModoStackExchangeDataModel extends KGOItemsDataModel
 {
     /**

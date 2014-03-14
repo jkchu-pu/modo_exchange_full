@@ -9,6 +9,16 @@
  *
  */
 
+/**
+ * @ingroup DataRetriever
+ *
+ * @brief This retriever handles multiple endpoints of the stackechange api.
+ *
+ *  This retriever will make requests to get featured questions,
+ *  searching for questions, and retrieving answers for questions.
+ *
+ */
+
 class ModoStackExchangeDataRetriever extends KGOURLDataRetriever implements KGOSearchDataRetriever, KGOItemDataRetriever
 {
 
