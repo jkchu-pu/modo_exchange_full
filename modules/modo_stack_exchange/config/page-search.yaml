@@ -4,6 +4,6 @@ common:
         content:
             default:
             -   class: KGOSearchResultsController
-                uiClass: KGOUISearchResultsStackExchange
+                uiClass: KGOUISearchResultsModoStackExchange
 
 ...

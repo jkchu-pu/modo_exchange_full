@@ -4,7 +4,7 @@ common:
         content:
             default:
             -   class: KGODataController
-                uiClass: KGOUISearchStackExchange
+                uiClass: KGOUISearchModoStackExchange
             -   class: KGOListController
                 requiresData: false
                 options:

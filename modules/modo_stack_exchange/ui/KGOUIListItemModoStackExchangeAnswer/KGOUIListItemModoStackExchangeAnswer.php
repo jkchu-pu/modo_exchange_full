@@ -9,9 +9,7 @@
  *
  */
 
-
-class KGOUISearchResultsStackExchange extends KGOUISearchResults
+class KGOUIListItemModoStackExchangeAnswer extends KGOUIListItem
 {
-    protected static $arrayClass = 'KGOUIList';
 
 }

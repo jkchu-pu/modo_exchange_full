@@ -51,7 +51,7 @@ common:
                         -   name: items
                             contents:
                             -   class: KGOListItemController
-                                uiClass: KGOUIListItemSEAnswer
+                                uiClass: KGOUIListItemModoStackExchangeAnswer
                                 source:
                                 -   kgoResolveType: method
                                     kgoResolveValue: getAnswers

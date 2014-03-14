@@ -9,7 +9,7 @@
  *
  */
 
-class KGOUISearchStackExchange extends KGOUISearch
+class KGOUISearchModoStackExchange extends KGOUISearch
 {
 
 }
