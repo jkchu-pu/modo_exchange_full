@@ -1,6 +1,6 @@
 ---
-id: modolabs/modo_stackoverflow
-description: Stack Overflow Module
+id: modolabs/modo_stackexchange
+description: Stack Exchange Module
 license: commercial
 version: 2.0.0
 require:

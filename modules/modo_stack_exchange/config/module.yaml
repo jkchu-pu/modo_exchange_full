@@ -9,7 +9,7 @@ common:
             objdefs:
                 content: page-search.objdefs.content.default
         detail:
-            pageTitle: Stack Overflow
+            pageTitle: Stack Exchange
             objdefs:
                 content: page-detail.objdefs.content.default
 ...
