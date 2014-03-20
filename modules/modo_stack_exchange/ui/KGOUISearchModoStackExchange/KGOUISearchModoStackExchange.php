@@ -9,7 +9,12 @@
  *
  */
 
+/**
+ * @ingroup UI_Search UI_Object_Subclassable
+ * @brief Subclass of KGOUISearch used to display a Stack Exchange search container
+ */
+
 class KGOUISearchModoStackExchange extends KGOUISearch
 {
-
+    // This class doesn't do much currently
 }

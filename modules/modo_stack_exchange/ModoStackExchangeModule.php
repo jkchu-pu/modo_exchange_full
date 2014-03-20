@@ -9,6 +9,12 @@
  *
  */
 
+/**
+ * @ingroup Module
+ *
+ * @brief Used to search/browse StackExchange information
+ */
+
 class ModoStackExchangeModule extends KGOModule {
 
     protected function initializeForPageConfigObjects_index(KGOUIPage $page, $objects) {

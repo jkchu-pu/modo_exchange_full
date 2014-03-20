@@ -9,6 +9,10 @@
  *
  */
 
+/**
+ * @ingroup UI_Search UI_Object_Subclassable
+ * @brief Subclass of KGOUISearchResults used to display a list of Stack Exchange search results
+ */
 
 class KGOUISearchResultsModoStackExchange extends KGOUISearchResults
 {
