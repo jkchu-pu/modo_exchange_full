@@ -1,11 +1,17 @@
+#       Welcome to the objdef for the detail page of the ModoStackExchangeModule!
+#       This object definition defines three major areas of content, each as a KGOUIObject or collection of KGOUIObjects
+#           1)  KGOUIDetailStackExchange, which is the root object and directly handles displaying the title, author, and avatar thumbnail
+#           2)  KGOUIHTML, which displays the question body
+#           3)  KGOUIList, which displays a collection of KGOUIListItemModoStackExchangeAnswer objects. Each used to display data about the answer KGODataObject
+
 ---
 common:                                                             # 'common' declares the pagetype. It is possible to add definitions for other pagetypes
     objdefs:                                                        # Referenced from module.yaml
         content:                                                    # Referenced from module.yaml
             default:                                                # Referenced from module.yaml
             -   class: KGODetailController                          # 'class' defines which KGODataController subclass we should use to control the object definition
-                uiClass: KGOUIDetailStackExchange                   # 'uiClass' defines which KGOUIObject subclass should be used by the KGODataController. See KGODataController subclass for default uiClass
-                source:                                             # 'source' sets the data source of the KGODataController, this also will limit scope
+                uiClass: KGOUIDetailStackExchange                   # 'uiClass' defines which KGOUIObject subclass should be used by the KGODataController. See KGODataController subclass for default uiClass if no 'uiClass' is explicitly defined
+                source:                                             # 'source' sets the data source of the KGODataController
                 -   kgoResolveType: method                          # resolve type 'method' calls a method on current scope
                     kgoResolveValue: getFeed                        # call getFeed on the KGOModule object, returns KGODataModel object
                 -   kgoResolveType: method                          # it is possible to chain kgoResolve to call multiple methods
@@ -28,7 +34,7 @@ common:                                                             # 'common' d
                         kgoResolveValue: author                     # 'author' (different than above), is an attribute on the current KGODataObject
                 regions:                                            # regions, similar to fields, are named areas of content. Regions can have their own KGODataControllers
                 -   name: content                                   # regions are specified by the region name. See the reference documentation in KGOUIDetail for declared regions
-                    contents:                                       # 'contents' is a keyword used to declare what is in the region
+                    contents:                                       # 'contents' is a keyword used to declare region innards
                     -   class: KGODataController                    # The first data controller of region contents will be a KGODataController
                         uiClass: KGOUIHTML                          # This data controller will act on a KGOUIHTML object which is used for displaying html content
                         fields:                                     #
@@ -43,7 +49,7 @@ common:                                                             # 'common' d
                         fields:                                     # See the reference documentation in KGOUIList for available fields
                             heading:                                #
                                 kgoResolveType: localize            # resolve type 'localize' refers to a localized string defined in the 'strings' components
-                                kgoResolveValue: modo_stack_exchange.headings.answers       # The dot syntax for localized strings servers as an address syntax.
+                                kgoResolveValue: modo_stack_exchange.headings.answers       # The dot syntax for localized strings servers as an address in the strings file.
                             noItemsMessage:                         #
                                 kgoResolveType: localize            #
                                 kgoResolveValue: modo_stack_exchange.titles.noAnswers
@@ -62,6 +68,13 @@ common:                                                             # 'common' d
                                     label:                          #
                                         kgoResolveType: value       #
                                         kgoResolveValue: score      # The 'score' attribute contains the current number of votes for an answer
+                                        kgoResolveProcessors:       #
+                                        -   class: KGOStringFormatDataProcessor             # The KGOStringFormatDataProcessor is irregular and will discard the value ('score') above, instead it uses the array of 'args' passed in as processor options
+                                            options:                #
+                                                format: '%s | %s'   #
+                                                args:               #
+                                                -   score           #
+                                                -   author          #
                                 fieldFormatters:                    # field formatters can be used to add KGOFormatters to a field
                                     title:                          # defines which field we should add the formatters to
                                     -   class: KGOHTMLFormatter     # KGOHTMLFormatter is used to display html markup in the field value

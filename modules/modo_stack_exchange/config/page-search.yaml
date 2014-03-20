@@ -1,9 +1,12 @@
----
-common:
-    objdefs:
-        content:
-            default:
-            -   class: KGOSearchResultsController
-                uiClass: KGOUISearchResultsModoStackExchange
+#       Welcome to the objdef for the search page of the ModoStackExchangeModule!
+#       This object definition defines a single area of content
+#           1)  KGOUISearchResultsModoStackExchange is used to display a list of search results. Each item will navigate to the detail page
 
+---
+common:                                                             # 'common' declares the pagetype. It is possible to add definitions for other pagetypes
+    objdefs:                                                        # Referenced from module.yaml
+        content:                                                    # Referenced from module.yaml
+            default:                                                # Referenced from module.yaml
+            -   class: KGOSearchResultsController                   # 'class' defines which KGODataController subclass we should use to control the object definition, KGOSearchResultsController is a dataController used to display search results
+                uiClass: KGOUISearchResultsModoStackExchange        # 'uiClass' defines which KGOUIObject subclass should be used by the KGODataController. See KGODataController subclass for default uiClass if no 'uiClass' is explicitly defined
 ...

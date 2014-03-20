@@ -1,27 +1,32 @@
+#       Welcome to the objdef for the index page of the ModoStackExchangeModule!
+#       This object definition defines two major areas of content
+#           1)  KGOUISearchModoStackExchange, which represents a search field. When a query is made, the user will be sent to the search page to view search results
+#           2)  KGOUIList, which displays a collection of KGOUIListItem objects for the Stack Exchange "Featured Questions". Each item will navigate to a detail page
+
 ---
-common:
-    objdefs:
-        content:
-            default:
-            -   class: KGODataController
-                uiClass: KGOUISearchModoStackExchange
-            -   class: KGOListController
-                requiresData: false
-                options:
-                    grouped: true
-                    urlCommand: detail
-                fields:
-                    heading:
-                        kgoResolveType: localize
-                        kgoResolveValue: modo_stack_exchange.headings.featuredQuestions
-                    noItemsMessage:
-                        kgoResolveType: localize
+common:                                                                     # 'common' declares the pagetype. It is possible to add definitions for other pagetypes
+    objdefs:                                                                # Referenced from module.yaml
+        content:                                                            # Referenced from module.yaml
+            default:                                                        # Referenced from module.yaml
+            -   class: KGODataController                                    # 'class' defines which KGODataController subclass we should use to control the object definition, KGODataController is the standard controller
+                uiClass: KGOUISearchModoStackExchange                       # 'uiClass' defines which KGOUIObject subclass should be used by the KGODataController. KGOUISearchModoStackExchange inherits from KGOUISearch which can be used to display a search field
+            -   class: KGOListController                                    # Below the search field, the index page will display a list of Stack Exchange "Featured Questions"
+                requiresData: false                                         # 'requiresData' is a KGODataController property which causes the controller to hide the element if the controller's data source does not return any data
+                options:                                                    # options can be set on KGOUIObjects, see the reference documentation in KGOUIDetail for available options
+                    grouped: true                                           #
+                    urlCommand: detail                                      # 'urlCommand' is a neat option to link directly to a different page in the current module. The necessary parameters (feed, id) will be added automatically
+                fields:                                                     # fields are named areas of content that make a KGOUIObject. See the reference documentation in KGOUIDetail for available fields
+                    heading:                                                #
+                        kgoResolveType: localize                            # resolve type 'localize' refers to a localized string defined in the 'strings' components
+                        kgoResolveValue: modo_stack_exchange.headings.featuredQuestions         # The dot syntax for localized strings servers as an address.
+                    noItemsMessage:                                         #
+                        kgoResolveType: localize                            #
                         kgoResolveValue: modo_stack_exchange.error.noFeaturedQuestions
-                regions:
-                -   name: items
-                    contents:
-                    -   class: KGOListItemController
-                        source:
-                        -   kgoResolveType: method
-                            kgoResolveValue: getFeaturedQuestions
+                regions:                                                    # regions, similar to fields, are named areas of content. Regions can have their own KGODataControllers
+                -   name: items                                             # KGOUIList inherits a region 'items' that is used to display list items
+                    contents:                                               # 'contents' is a keyword used to declare region innards
+                    -   class: KGOListItemController                        # define a KGOListItemController to handle each item. If a KGODataController's data source is an array, the data controller will expand the objdef to each item in the array
+                        source:                                             # 'source' is used to set the data source of the KGODataController
+                        -   kgoResolveType: method                          # resolve type 'method' calls a method on data source
+                            kgoResolveValue: getFeaturedQuestions           # 'getFeaturedQuestions' is a public method of the ModoStackExchangeModule, it returns an array of ModoStackExchangeQuestionDataObjects
 ...
