@@ -16,5 +16,5 @@
 
 class KGOUISearchModoStackExchange extends KGOUISearch
 {
-    // This class doesn't do much currently
+    // This subclass doesn't do much currently
 }
