@@ -1,18 +1,18 @@
 ---
-common:
-    objdefs:
-        content:
-            default:
+common:                                                             # 'common' declares the pagetype. It is possible to add definitions for other pagetypes
+    objdefs:                                                        # Referenced from module.yaml
+        content:                                                    # Referenced from module.yaml
+            default:                                                # Referenced from module.yaml
             -   class: KGODetailController                          # 'class' defines which KGODataController subclass we should use to control the object definition
                 uiClass: KGOUIDetailStackExchange                   # 'uiClass' defines which KGOUIObject subclass should be used by the KGODataController. See KGODataController subclass for default uiClass
-                source:                                             # using source tightens scope on returned object, scope always begins with the module
+                source:                                             # 'source' sets the data source of the KGODataController, this also will limit scope
                 -   kgoResolveType: method                          # resolve type 'method' calls a method on current scope
                     kgoResolveValue: getFeed                        # call getFeed on the KGOModule object, returns KGODataModel object
                 -   kgoResolveType: method                          # it is possible to chain kgoResolve to call multiple methods
-                    kgoResolveValue: getItem                        # call getItem on the feed object returned above, returns
+                    kgoResolveValue: getItem                        # call getItem on the feed object returned above, returns a ModoStackExchangeQuestionDataObject in this case
                 options:                                            # options can be set on KGOUIObjects, see the reference documentation in KGOUIDetail for available options
                         bookmarkable: false                         # this option disables the 'bookmark' button
-                fields:                                             # fields are named areas of content that make a KGOUIObject, see the reference documentation in KGOUIDetail for available fields
+                fields:                                             # fields are named areas of content that make a KGOUIObject. See the reference documentation in KGOUIDetail for available fields
                     title:                                          # 'title' is a defined field of KGOUIDetail
                         kgoResolveType: value                       # resolve tye 'value' calls 'getValue' on current object. Most often used to access attributes
                         kgoResolveValue: kgo:title                  # kgo:title is an attribute of KGODataObject
@@ -26,43 +26,43 @@ common:
                     author:                                         # 'author' is a defined field of KGOUIDetailStackExchange
                         kgoResolveType: value                       #
                         kgoResolveValue: author                     # 'author' (different than above), is an attribute on the current KGODataObject
-                regions:
-                -   name: content
-                    contents:
-                    -   class: KGODataController
-                        uiClass: KGOUIHTML
-                        fields:
-                            html:
-                                kgoResolveType: value
-                                kgoResolveValue: body
-                    -   class: KGOListController
-                        requiresData: false
-                        options:
-                            grouped: false
-                            inset: true
-                        fields:
-                            heading:
-                                kgoResolveType: localize
-                                kgoResolveValue: modo_stack_exchange.headings.answers
-                            noItemsMessage:
-                                kgoResolveType: localize
+                regions:                                            # regions, similar to fields, are named areas of content. Regions can have their own KGODataControllers
+                -   name: content                                   # regions are specified by the region name. See the reference documentation in KGOUIDetail for declared regions
+                    contents:                                       # 'contents' is a keyword used to declare what is in the region
+                    -   class: KGODataController                    # The first data controller of region contents will be a KGODataController
+                        uiClass: KGOUIHTML                          # This data controller will act on a KGOUIHTML object which is used for displaying html content
+                        fields:                                     #
+                            html:                                   # 'html' is a field on KGOUIHTML for the html content
+                                kgoResolveType: value               #
+                                kgoResolveValue: body               # The ModoStackExchangeQuestionDataObject in question (ha!), contains an attribute 'body'
+                    -   class: KGOListController                    # A KGOListController will be used to display answers to this question in a list
+                        requiresData: false                         # 'requiresData' is a KGODataController property which causes the controller to hide the element if the controller's data source does not return any data
+                        options:                                    # See the reference documentation in KGOUIList for available options
+                            grouped: false                          #
+                            inset: true                             #
+                        fields:                                     # See the reference documentation in KGOUIList for available fields
+                            heading:                                #
+                                kgoResolveType: localize            # resolve type 'localize' refers to a localized string defined in the 'strings' components
+                                kgoResolveValue: modo_stack_exchange.headings.answers       # The dot syntax for localized strings servers as an address syntax.
+                            noItemsMessage:                         #
+                                kgoResolveType: localize            #
                                 kgoResolveValue: modo_stack_exchange.titles.noAnswers
-                        regions:
-                        -   name: items
-                            contents:
-                            -   class: KGOListItemController
-                                uiClass: KGOUIListItemModoStackExchangeAnswer
-                                source:
-                                -   kgoResolveType: method
-                                    kgoResolveValue: getAnswers
-                                fields:
-                                    title:
-                                        kgoResolveType: value
-                                        kgoResolveValue: body
-                                    label:
-                                        kgoResolveType: value
-                                        kgoResolveValue: score
-                                fieldFormatters:
-                                    title:
-                                    -   class: KGOHTMLFormatter
+                        regions:                                    #
+                        -   name: items                             # KGOUIList inherits a region 'items' that is used to display list items
+                            contents:                               #
+                            -   class: KGOListItemController        # define a KGOListItemController to handle each item. If a KGODataController's data source is an array, the data controller will expand the objdef to each item in the array
+                                uiClass: KGOUIListItemModoStackExchangeAnswer               # This custom subclass allows us customize the look and feel of each answer item
+                                source:                             # Updated our source to be a list of answer objects
+                                -   kgoResolveType: method          #
+                                    kgoResolveValue: getAnswers     # 'getAnswers' is a method on ModoStackExchangeQuestionDataObject which returns an array of KGODataObjects representing Stack Exchange answers
+                                fields:                             #
+                                    title:                          #
+                                        kgoResolveType: value       #
+                                        kgoResolveValue: body       # The 'body' attribute contains the answer's description
+                                    label:                          #
+                                        kgoResolveType: value       #
+                                        kgoResolveValue: score      # The 'score' attribute contains the current number of votes for an answer
+                                fieldFormatters:                    # field formatters can be used to add KGOFormatters to a field
+                                    title:                          # defines which field we should add the formatters to
+                                    -   class: KGOHTMLFormatter     # KGOHTMLFormatter is used to display html markup in the field value
 ...
