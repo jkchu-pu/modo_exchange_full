@@ -10,15 +10,14 @@
     $quote_bg_color = #dadada;
 
     pre,
-    blockquote {
-        background-color: $quote_bg_color;
-        padding: kgo_theme("standard_padding");
-        overflow-x: scroll;
-    }
-
+    blockquote,
     code {
         background-color: $quote_bg_color;
-        padding: kgo_theme("standard_padding") * 0.25;
+        margin: kgo_theme("standard_padding") * 0.5;
+        vertical-align: baseline;
+        overflow: auto;
+        font-size: 0.85rem;
+        max-height: 600px;
     }
 
     .kgoui_detail_author {

@@ -2,6 +2,7 @@
     All CSS for a KGOUIObject should be wrapped in a class to namespace the CSS to inside this class
     Kurogo 2 uses the Compass Sass Framework for CSS styles, this is a little different that normal CSS, but is much cleaner and more powerful. http://compass-style.org
 
+    CSS is inherited from KGOUIDetailModoStackExchange.css as it is assummed this UIObject will not be used outside of KGOUIDetailStackExchange
 */
 
 .kgoui_list_item_modo_stack_exchange_answer {

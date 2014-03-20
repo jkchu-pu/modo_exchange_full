@@ -1,16 +1,16 @@
 ---
 common:
-    pages:
-        index:
-            pageTitle: Stack Exchange
-            objdefs:
-                content: page-index.objdefs.content.default
+    pages:                                                          #   begins definition of pages
+        index:                                                      #   'index' is a page ID.
+            pageTitle: Stack Exchange                               #   'pageTitle' defines a static title displayed when viewing the page
+            objdefs:                                                #   'objdefs' begins the object definition for this page
+                content: page-index.objdefs.content.default         #   'content' can be used to organize object definitions into different config areas. This references page-index.yaml
         search:
             pageTitle: Search Results
             objdefs:
-                content: page-search.objdefs.content.default
+                content: page-search.objdefs.content.default        #   This references page-search.yaml
         detail:
             pageTitle: Stack Exchange
             objdefs:
-                content: page-detail.objdefs.content.default
+                content: page-detail.objdefs.content.default        #   This references page-detail.yaml
 ...
