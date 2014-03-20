@@ -40,7 +40,7 @@ common:                                                             # 'common' d
                         fields:                                     #
                             html:                                   # 'html' is a field on KGOUIHTML for the html content
                                 kgoResolveType: value               #
-                                kgoResolveValue: body               # The ModoStackExchangeQuestionDataObject in question (ha!), contains an attribute 'body'
+                                kgoResolveValue: stack:body         # The ModoStackExchangeQuestionDataObject in question (ha!), contains an attribute 'stack:body'
                     -   class: KGOListController                    # A KGOListController will be used to display answers to this question in a list
                         requiresData: false                         # 'requiresData' is a KGODataController property which causes the controller to hide the element if the controller's data source does not return any data
                         options:                                    # See the reference documentation in KGOUIList for available options
@@ -64,7 +64,7 @@ common:                                                             # 'common' d
                                 fields:                             #
                                     title:                          #
                                         kgoResolveType: value       #
-                                        kgoResolveValue: body       # The 'body' attribute contains the answer's description
+                                        kgoResolveValue: stack:body # The 'stack:body' attribute contains the answer's description
                                     label:                          #
                                         kgoResolveType: value       #
                                         kgoResolveValue: score      # The 'score' attribute contains the current number of votes for an answer
@@ -73,7 +73,7 @@ common:                                                             # 'common' d
                                             options:                #
                                                 format: '%s | %s'   #
                                                 args:               #
-                                                -   score           #
+                                                -   stack:score     #
                                                 -   author          #
                                 fieldFormatters:                    # field formatters can be used to add KGOFormatters to a field
                                     title:                          # defines which field we should add the formatters to

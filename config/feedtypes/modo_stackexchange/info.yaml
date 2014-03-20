@@ -1,0 +1,41 @@
+#   Welcome to the feedtype declaration for the modo_stackexchange feedtype!
+
+---
+title: Stack Exchange Feed                                                              # The human readable title for this feedtype
+dataObjects:                                                                            # The data objects this feedtype manages
+-   KGODataObject
+-   ModoStackExchangeQuestionDataObject
+args:                                                                                   # The arguments to be set for feeds with this feedtype
+    dataModel: ModoStackExchangeDataModel
+    dataRetriever: ModoStackExchangeDataRetriever
+    dataParser: KGOJSONDataParser
+    processors:
+        preprocessor:                                                                   # A prepocessor is run on the raw data returned by the DataRetriever
+        -   class: ModoStackExchangeDataProcessor
+config:                                                                                 # 'config' is used by the Kurogo Admin Console to display a UI to further configure the feed instance
+-   class: KGOFormElementControllerText
+    validators: []
+    options:
+        required: false
+    fields:
+        label: Stack Exchange Site
+        description: The Stack Exchange Site to explore
+    controller:
+        config: site
+-   class: KGOFormElementControllerText
+    options:
+        required: false
+    fields:
+        label: API Key
+        description: The API key used to authorize requests
+    controller:
+        config: apiKey
+-   class: KGOFormElementControllerText
+    options:
+        required: false
+    fields:
+        label: API Version
+        description: The API version to use for requests. Defaults to 2.1
+    controller:
+        config: apiKey
+...
