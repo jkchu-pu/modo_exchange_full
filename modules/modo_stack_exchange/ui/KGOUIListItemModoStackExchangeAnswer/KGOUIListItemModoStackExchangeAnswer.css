@@ -1,19 +1,10 @@
-.kgoui_list_item_se_answer {
+/*
+    All CSS for a KGOUIObject should be wrapped in a class to namespace the CSS to inside this class
+    Kurogo 2 uses the Compass Sass Framework for CSS styles, this is a little different that normal CSS, but is much cleaner and more powerful. http://compass-style.org
 
-    .kgoui_list_item_textblock {
-        padding-left: 3.5rem;
-        position: relative;
+*/
 
-        .kgoui_list_item_label {
-            position: absolute;
-            left: 0;
-            padding-right: kgo_theme("standard_padding");
-            font-family: kgo_theme("primary_heading_font_family");
-            font-size: kgo_theme("primary_heading_font_size");
-            font-weight: kgo_theme("primary_heading_font_weight");
-            font-style: kgo_theme("primary_heading_font_style");
-            color: kgo_theme("primary_heading_text_color");
-        }
-    }
+.kgoui_list_item_modo_stack_exchange_answer {
+
 
 }

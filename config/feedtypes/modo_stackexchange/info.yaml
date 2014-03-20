@@ -11,7 +11,7 @@ args:                                                                           
     dataParser: KGOJSONDataParser
     processors:
         preprocessor:                                                                   # A prepocessor is run on the raw data returned by the DataRetriever
-        -   class: ModoStackExchangeDataProcessor
+        -   class: ModoStackExchangeDataProcessor                                       # The Stack Exchange API compresses all of its responses. The ModoStackExchangeDataProcessor will decompress the response into the JSON we know and love. http://api.stackexchange.com/docs/compression
 config:                                                                                 # 'config' is used by the Kurogo Admin Console to display a UI to further configure the feed instance
 -   class: KGOFormElementControllerText
     validators: []

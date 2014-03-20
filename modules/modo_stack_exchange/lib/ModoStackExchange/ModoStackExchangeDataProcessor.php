@@ -9,11 +9,15 @@
  *
  */
 
+/*
+ *  This StackExchange API compresses all its response. http://api.stackexchange.com/docs/compression
+ *  This DataProcessor is used as a preprocessor so each response can be inflated before it is parsed
+ */
 
 /**
  * @ingroup DataProcessor
  *
- * @brief Returns gzinflated on value
+ * @brief Returns gzinflated value
  *
  */
 

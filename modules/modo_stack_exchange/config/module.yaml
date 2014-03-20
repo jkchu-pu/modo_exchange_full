@@ -2,6 +2,7 @@
 common:
     pages:
         index:
+            pageTitle: Stack Exchange
             objdefs:
                 content: page-index.objdefs.content.default
         search:

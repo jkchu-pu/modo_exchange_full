@@ -1,3 +1,13 @@
+{*
+    This is a smarty template. This text will not be rendered because this is in a smarty comment
+        See http://www.smarty.net for syntax.
+
+
+    This template will define the structure of the KGOUIDetailModoStackExchange object
+    It wraps the fields 'thumbnail', 'title', and 'author' in a 'detail header' div
+    Then it declares the regions 'actions' and 'content'
+*}
+
 {object_wrapper}
     <div class="kgo_inset kgoui_detail_header">
         {field_is_set_wrapper field="thumbnail" class="kgoui_detail_thumbnail"}

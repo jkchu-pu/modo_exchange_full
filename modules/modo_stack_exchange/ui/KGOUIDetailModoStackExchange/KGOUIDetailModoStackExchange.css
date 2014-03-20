@@ -1,0 +1,27 @@
+/*
+    All CSS for a KGOUIObject should be wrapped in a class to namespace the CSS to inside this class
+    Kurogo 2 uses the Compass Sass Framework for CSS styles, this is a little different that normal CSS, but is much cleaner and more powerful. http://compass-style.org
+
+    The styles for the kgoui_detail_stack_exchange class are mainly to replicate the CSS you would see on StackExchange itself.
+*/
+
+.kgoui_detail_modo_stack_exchange {
+
+    $quote_bg_color = #dadada;
+
+    pre,
+    blockquote {
+        background-color: $quote_bg_color;
+        padding: kgo_theme("standard_padding");
+        overflow-x: scroll;
+    }
+
+    code {
+        background-color: $quote_bg_color;
+        padding: kgo_theme("standard_padding") * 0.25;
+    }
+
+    .kgoui_detail_author {
+        text-align: right;
+    }
+}

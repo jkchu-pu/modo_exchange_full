@@ -52,7 +52,7 @@ class ModoStackExchangeDataRetriever extends KGOURLDataRetriever implements KGOS
             'key'                       => 'items',                                                   //  'key' defines the data attribute to be used to parse an object, the StackExchange API returns an array of 'items'
             'class'                     => 'ModoStackExchangeQuestionDataObject',                     //  'class' defines which KGODataObject subclass should be created, The ModoStackExchangeQuestionDataObject subclass exists because it needs to contain logic to request answers
             'includeUnmappedAttributes' => true,                                                      //  'includeUnmappedAttributes' tells the parse map to set attributes that are not explicitly defined below
-            'prefix'                    => 'stack',                                                  //  'prefix' defines a prefix to be added to any unmapped attributes. It is recommended that a prefix is always used if includeUnmappedAttributes is true
+            'prefix'                    => 'stack',                                                   //  'prefix' defines a prefix to be added to any unmapped attributes. It is recommended that a prefix is always used if includeUnmappedAttributes is true
             'attributes'                => array (                                                    //  'attributes' is the explicit list of KGODataObject attributes that will map to attributes in the data structure
                 KGODataObject::ID_ATTRIBUTE            => 'question_id',                              //    The API will return a 'question_id' field for each item, this will become the KGODataObject's ID attribute
                 KGODataObject::TITLE_ATTRIBUTE         => 'title',                                    //    Each item will also have a 'title' field, this will become the KGODataObject's TITLE attribute
@@ -76,7 +76,7 @@ class ModoStackExchangeDataRetriever extends KGOURLDataRetriever implements KGOS
             'key'                       => 'items',                                                   //  The StackExchange API returns an array of 'items' when answers are requested
             'class'                     => 'KGODataObject',                                           //  There is no need to add extra logic to an answer item, 'class' is KGODataObject for simplicity
             'includeUnmappedAttributes' => true,                                                      //  Again lets include unmapped attributes
-            'prefix'                    => 'stack',                                                  //  Again lets include a prefix for unmapped attributes
+            'prefix'                    => 'stack',                                                   //  Again lets include a prefix for unmapped attributes
             'attributes' => array (                                                                   //  The attributes we explicitly map
                                 KGODataObject::ID_ATTRIBUTE => 'answer_id',                           //    'answer_id' will become our KGODataObject ID attribute
                                 'profile_image' => 'owner.profile_image',                             //    The 'owner' field contains metadata about the answer author, we are interested in the 'profile_image'
