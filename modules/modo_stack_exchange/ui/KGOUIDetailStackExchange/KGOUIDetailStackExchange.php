@@ -9,8 +9,20 @@
  *
  */
 
+/**
+ * @ingroup UI_Detail UI_Object_Subclassable
+ * @brief The abstract detail page superclass.
+ *
+ * ### Fields:
+ *
+ * + author (_string_)
+ *     + The author of the item.  Defaults to `null` (no author).
+ *
+ */
+
 class KGOUIDetailStackExchange extends KGOUIDetail
 {
+    protected static $hasFieldAuthor = true;
     protected static $hasFocalBackground = true;
 
     protected static $optionDefaultShare = false;
@@ -19,7 +31,6 @@ class KGOUIDetailStackExchange extends KGOUIDetail
     protected function init() {
         parent::init();
 
-        $this->addField('author');
     }
 
     /* Subclassed */

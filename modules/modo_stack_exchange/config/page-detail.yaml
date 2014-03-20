@@ -3,29 +3,29 @@ common:
     objdefs:
         content:
             default:
-            -   class: KGODetailController
-                uiClass: KGOUIDetailStackExchange
-                source:
-                -   kgoResolveType: method
-                    kgoResolveValue: getFeed
-                -   kgoResolveType: method
-                    kgoResolveValue: getItem
-                options:
-                        bookmarkable: false
-                fields:
-                    title:
-                        kgoResolveType: value
-                        kgoResolveValue: kgo:title
-                    thumbnail:
-                        kgoResolveType: value
-                        kgoResolveValue: se:avatar
-                        kgoResolveProcessors:
-                        -   class: KGOImageDataProcessor
-                            options:
-                                maxHeight: 60
-                    author:
-                        kgoResolveType: value
-                        kgoResolveValue: author
+            -   class: KGODetailController                          # 'class' defines which KGODataController subclass we should use to control the object definition
+                uiClass: KGOUIDetailStackExchange                   # 'uiClass' defines which KGOUIObject subclass should be used by the KGODataController. See KGODataController subclass for default uiClass
+                source:                                             # using source tightens scope on returned object, scope always begins with the module
+                -   kgoResolveType: method                          # resolve type 'method' calls a method on current scope
+                    kgoResolveValue: getFeed                        # call getFeed on the KGOModule object, returns KGODataModel object
+                -   kgoResolveType: method                          # it is possible to chain kgoResolve to call multiple methods
+                    kgoResolveValue: getItem                        # call getItem on the feed object returned above, returns
+                options:                                            # options can be set on KGOUIObjects, see the reference documentation in KGOUIDetail for available options
+                        bookmarkable: false                         # this option disables the 'bookmark' button
+                fields:                                             # fields are named areas of content that make a KGOUIObject, see the reference documentation in KGOUIDetail for available fields
+                    title:                                          # 'title' is a defined field of KGOUIDetail
+                        kgoResolveType: value                       # resolve tye 'value' calls 'getValue' on current object. Most often used to access attributes
+                        kgoResolveValue: kgo:title                  # kgo:title is an attribute of KGODataObject
+                    thumbnail:                                      # 'thumbnail' is a defined field of KGOUIDetail
+                        kgoResolveType: value                       #
+                        kgoResolveValue: se:avatar                  # 'se:avatar' is an attribute that contains a URL to the author's avatar image
+                        kgoResolveProcessors:                       # resolve processors can be used to directly add KGODataProcessors to field value
+                        -   class: KGOImageDataProcessor            # 'class' defines which class of data processor is needed. In this case, a KGOImageDataProcessor is used to convert the URL attribute to a KGOImage object
+                            options:                                # 'options' are passed to the KGODataProcessor as arguments. See processor subclass for available options
+                                maxHeight: 60                       # this will limit the size of the avatar image to something more appealing
+                    author:                                         # 'author' is a defined field of KGOUIDetailStackExchange
+                        kgoResolveType: value                       #
+                        kgoResolveValue: author                     # 'author' (different than above), is an attribute on the current KGODataObject
                 regions:
                 -   name: content
                     contents:
